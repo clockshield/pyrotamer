@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Prototype App</title>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 50%;
+        /* The width is the width of the web page */
+      }
+    </style>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script>
+        function initMap() {
+            const locations = [];
+            <%for(var i = 0; i < points.length; i++){%>
+                locations.push({lat:<%=points[i].latitude%>,lng:<%=points[i].longitude%>});                
+            <%}%>
+
+            
+            const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: <%=points[0].latitude%>, lng: 140.887 },
+            });
+        // Create an array of alphabetical characters used to label the markers.
+            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      // Add some markers to the map.
+      // Note: The code uses the JavaScript Array.prototype.map() method to
+      // create an array of markers based on a given "locations" array.
+      // The map() method here has nothing to do with the Google Maps API.
+
+            const markers = locations.map((location, i) => {
+                return new google.maps.Marker({
+                position: location,
+                label: labels[i % labels.length],
+                });
+            });
+      // Add a marker clusterer to manage the markers.
+            new MarkerClusterer(map, markers, {
+                imagePath:
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+            });
+        }
+
+        
+    </script>
+  </head> 
+
+    <body>
+        <h1>Enter Name, Latitude and Longitude</h1>
+
+        <form action="/points" method="POST">
+            <input type="text" placeholder="name" name="name" />
+            <input type="float" placeholder="latitude" name="latitude" />
+            <input type="float" placeholder="longitude" name="longitude" />
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2> Update </h2>
+        <section>
+            <div>
+                <form id="update">
+                    <input type="text" placeholder="new name" id ="new name"/>
+                    <input type="float" placeholder="new latitude" id = "new latitude"/>
+                    <input type="float" placeholder="new longitude" id = "new longitude"/>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </section>
+        <h2> Delete </h2>
+        <section>
+            <div>
+                <form id="delete">
+                    <input type="text" placeholder="delete name" id ="delete name"/>
+                    <button id = "delete button">Delete</button>
+                </form>
+            </div>
+            <div id="message"></div>
+        </section>
+        <script src = "main.js"></script>
+        
+        <h2> Points </h2>
+
+        <ul class="points">
+            <!-- Loop through quotes -->
+            <% for(var i = 0; i < points.length; i++) {%>
+                <% if(points[i].name !== "") {%>
+                <li class="point">
+                    <span><%= points[i].name %></span>: 
+                    <span><%= points[i].latitude %></span>
+                    <span><%= points[i].longitude %></span>
+                </li>
+            <% }} %>
+        </ul>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk8_H0jGxul7y2gHgPuN6pEF4AsFn1XMM&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+
+    </body>
+</html>
