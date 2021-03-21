@@ -6,7 +6,9 @@ document.querySelector('#update').addEventListener('click', _ => {
         body: JSON.stringify({
             name: document.getElementById("new name").value,
             latitude: document.getElementById("new latitude").value,
-            longitude: document.getElementById("new longitude").value
+            longitude: document.getElementById("new longitude").value,
+            status: document.getElementById("myselect").value,
+
         })
     })
     .then(res => {
@@ -41,9 +43,10 @@ document.querySelector('#delete button').addEventListener('click', _ => {
 
 })
 
-
+/*
 document.querySelector('#point delete').addEventListener('click', _ => {
     document.getElementById('point delete').innerHTML = "adsfasdf"
 
 })
+*/
 

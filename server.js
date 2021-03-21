@@ -60,6 +60,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             name: req.body.name,
             latitude: req.body.latitude,
             longitude: req.body.longitude
+            
           }
         },
         {

@@ -48,17 +48,25 @@
             });
         }
 
-        
     </script>
   </head> 
 
     <body>
-        <h1>Enter Name, Latitude and Longitude</h1>
+        <h1>Enter Name, Latitude, Longitude and Category</h1>
 
         <form action="/points" method="POST">
             <input type="text" placeholder="name" name="name" />
             <input type="float" placeholder="latitude" name="latitude" />
             <input type="float" placeholder="longitude" name="longitude" />
+            
+              <select name = 'myselect'>
+                <option value="Hand Lines">Hand Lines</option>
+                <option value="Dozer Lines">Dozer Lines</option>
+                <option value="Fire Truck">Fire Truck</option>
+                
+              </select>
+
+
             <button type="submit">Submit</button>
         </form>
 
@@ -69,6 +77,12 @@
                     <input type="text" placeholder="new name" id ="new name"/>
                     <input type="float" placeholder="new latitude" id = "new latitude"/>
                     <input type="float" placeholder="new longitude" id = "new longitude"/>
+                     <select name = 'myselect'>
+                        <option value="Hand Lines">Hand Lines</option>
+                        <option value="Dozer Lines">Dozer Lines</option>
+                        <option value="Fire Truck">Fire Truck</option>
+                        
+                      </select>
                     <button>Submit</button>
                 </form>
             </div>
@@ -95,6 +109,7 @@
                     <span><%= points[i].name %></span>: 
                     <span><%= points[i].latitude %></span>
                     <span><%= points[i].longitude %></span>
+                     <span><%= points[i].myselect %></span>
                 </li>
             <% }} %>
         </ul>
