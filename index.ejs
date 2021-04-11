@@ -6,70 +6,16 @@
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
-        height: 400px;
+        height: 500px;
         /* The height is 400 pixels */
         width: 50%;
         /* The width is the width of the web page */
         
       }
     </style>
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script>
-        
-        function initMap() {
-            const locations = [];
-            <%for(var i = 0; i < points.length; i++){%>
-                locations.push({lat:<%=points[i].latitude%>,lng:<%=points[i].longitude%>});                
-            <%}%>
-            const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 3,
-            center: { lat: <%=points[0].latitude%>, lng: 140.887 },
-            });
-        // Create an array of alphabetical characters used to label the markers.
 
-            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-           
-      // Add some markers to the map.
-      // Note: The code uses the JavaScript Array.prototype.map() method to
-      // create an array of markers based on a given "locations" array.
-      // The map() method here has nothing to do with the Google Maps API.
-             const contentString = "Hello World";
-            const markers = locations.map((location, i) => {
-                return new google.maps.Marker({
-                position: location,
-                map,
-                label: labels[i % labels.length],
-
-                });
-                
-
-            });
-           for(var i = 0 ; i < locations.length ; i++){
-            var marker = locations[i];
-            var infowindow = new google.maps.InfoWindow({
-                content: "contentString"
-            });
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker); 
-            });
-
-           }
-      // Add a marker clusterer to manage the markers.
-      
-            new MarkerClusterer(map, markers, {
-                imagePath:
-            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-            });
-
-            }
-            
-
-
-
-    </script>
     <meta charset="utf-8" />
                 <title>Demo: Add custom markers in Mapbox GL JS</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -86,7 +32,7 @@
             body { margin: 0; padding: 0; }
             #map { position: absolute; top: 100; bottom: 100; width: 100%; }
             .marker {
-          background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
+          background-image: url('https://pngimg.com/uploads/pokeball/pokeball_PNG30.png');
           background-size: cover;
           width: 50px;
           height: 50px;
@@ -100,7 +46,6 @@
         text-align: center;
         font-family: 'Open Sans', sans-serif;
         }
-
             </style>
   </head> 
 
@@ -194,48 +139,8 @@
        
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
         <script>
-
             mapboxgl.accessToken = 'pk.eyJ1IjoieXV0dTAwIiwiYSI6ImNrbjE2MmVyazBraXUycG1oczE2NHJqZGMifQ.H-XiIr0ryuMqyN7_vvB-6A';
-             var geojson = {
-              type: 'FeatureCollection',
-              features: [{
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [-77.032, 38.913]
-                },
-                properties: {
-                  title: 'Mapbox',
-                  description: 'Washington, D.C.'
-                }
-              },
-              {
-                type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [-122.414, 37.776]
-                },
-                properties: {
-                  title: 'Mapbox',
-                  description: 'San Francisco, California'
-                }
-                
-              }]
-            };
-            function createMarker(name, lat, long){
-                var y = {
-                    type: 'Feature',
-                geometry: {
-                  type: 'Point',
-                  coordinates: [lat, long]
-                },
-               properties: {
-                  title: 'Location',
-                  description: none
-                }
-                };
-                return y;
-            }
+
             var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/yutu00/ckn2i8co31phu17mkcbg0j027', // style URL
@@ -246,10 +151,7 @@
             var distanceContainer = document.getElementById('distance');
  
 // GeoJSON object to hold our measurement features
-            var geojson = {
-            'type': 'FeatureCollection',
-            'features': []
-            };
+
              
             // Used to draw a line between points
             var linestring = {
@@ -356,7 +258,6 @@
             ? 'pointer'
             : 'crosshair';
             });
-
              var geojson = {
         'type': 'FeatureCollection',
         'features': [
@@ -393,8 +294,8 @@
             'coordinates': [lng,lat]
            },
            'properties':{
-            'title':'Location',
-            'description':name
+            'title': name,
+            'description': "the code finally works"
             }
            };
          return y;
