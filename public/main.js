@@ -1,14 +1,12 @@
 
-document.querySelector('#update').addEventListener('click', _ => {
+document.querySelector('#update button').addEventListener('click', _ => {
     fetch('/points', {
         method: 'put',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name: document.getElementById("new name").value,
             latitude: document.getElementById("new latitude").value,
-            longitude: document.getElementById("new longitude").value,
-            status: document.getElementById("myselect").value,
-
+            longitude: document.getElementById("new longitude").value
         })
     })
     .then(res => {
@@ -43,10 +41,29 @@ document.querySelector('#delete button').addEventListener('click', _ => {
 
 })
 
-/*
-document.querySelector('#point delete').addEventListener('click', _ => {
-    document.getElementById('point delete').innerHTML = "adsfasdf"
+document.querySelector('#geolocation button').addEventListener('click', _ => {
+
+      navigator.geolocation.getCurrentPosition((position) => {
+          fetch('/points', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: document.getElementById("geolocation name").value,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+            })
+            .then(res => {
+                if (res.ok) return res.json()
+
+            })
+            .catch(console.error)
+          location.reload();
+
+
+        });
+    
 
 })
-*/
+
 
