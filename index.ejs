@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Prototype App</title>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 50%;
+        /* The width is the width of the web page */
+        
+      }
+    </style>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script>
+        
+        function initMap() {
+            const locations = [];
+            <%for(var i = 0; i < points.length; i++){%>
+                locations.push({lat:<%=points[i].latitude%>,lng:<%=points[i].longitude%>});                
+            <%}%>
+            const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: <%=points[0].latitude%>, lng: 140.887 },
+            });
+        // Create an array of alphabetical characters used to label the markers.
+
+            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+           
+      // Add some markers to the map.
+      // Note: The code uses the JavaScript Array.prototype.map() method to
+      // create an array of markers based on a given "locations" array.
+      // The map() method here has nothing to do with the Google Maps API.
+             const contentString = "Hello World";
+            const markers = locations.map((location, i) => {
+                return new google.maps.Marker({
+                position: location,
+                map,
+                label: labels[i % labels.length],
+
+                });
+                
+
+            });
+           for(var i = 0 ; i < locations.length ; i++){
+            var marker = locations[i];
+            var infowindow = new google.maps.InfoWindow({
+                content: "contentString"
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker); 
+            });
+
+           }
+      // Add a marker clusterer to manage the markers.
+      
+            new MarkerClusterer(map, markers, {
+                imagePath:
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+            });
+
+            }
+            
+
+
+
+    </script>
+    <meta charset="utf-8" />
+                <title>Demo: Add custom markers in Mapbox GL JS</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link
+                href="https://fonts.googleapis.com/css?family=Open+Sans"
+                rel="stylesheet"
+                />
+                <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+                <link
+                href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
+                rel="stylesheet"
+                />
+            <style>
+            body { margin: 0; padding: 0; }
+            #map { position: absolute; top: 100; bottom: 100; width: 100%; }
+            .marker {
+          background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
+          background-size: cover;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        .mapboxgl-popup {
+        max-width: 200px;
+        }
+        .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        }
+
+            </style>
+  </head> 
+
+    <body>
+         <style>
+        .distance-container {
+        position: absolute;
+        top: 450px;
+        left: 10px;
+        z-index: 1;
+        }
+         
+        .distance-container > * {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 11px;
+        line-height: 18px;
+        display: block;
+        margin: 0;
+        padding: 5px 10px;
+        border-radius: 3px;
+        }
+        </style>
+        <h1>Enter Name, Latitude, Longitude and Category</h1>
+
+        <form action="/points" method="POST">
+            <input type="text" placeholder="name" name="name" />
+            <input type="float" placeholder="latitude" name="latitude" />
+            <input type="float" placeholder="longitude" name="longitude" />
+              <select name = 'myselect'>
+                <option value="Hand Lines">Hand Lines</option>
+                <option value="Dozer Lines">Dozer Lines</option>
+                <option value="Fire Truck">Fire Truck</option>
+                
+              </select>
+
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2> Update </h2>
+        <section>
+            <div>
+                <form id="update">
+                    <input type="text" placeholder="new name" id ="new name"/>
+                    <input type="float" placeholder="new latitude" id = "new latitude"/>
+                    <input type="float" placeholder="new longitude" id = "new longitude"/>
+                     <select name = 'myselect'>
+                        <option value="Hand Lines">Hand Lines</option>
+                        <option value="Dozer Lines">Dozer Lines</option>
+                        <option value="Fire Truck">Fire Truck</option>
+                        
+                      </select>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </section>
+        <h2> Delete </h2>
+        <section>
+            <div>
+                <form id="delete">
+                    <input type="text" placeholder="delete name" id ="delete name"/>
+                    <button id = "delete button">Delete</button>
+                </form>
+            </div>
+            <div id="message"></div>
+        </section>
+        <script src = "main.js"></script>
+        
+        <h2> Points </h2>
+
+        <ul class="points">
+            <!-- Loop through quotes -->
+            <% for(var i = 0; i < points.length; i++) {%>
+                <% if(points[i].name !== "") {%>
+                <li class="point">
+                    <span><%= points[i].name %></span>: 
+                    <span><%= points[i].latitude %></span>
+                    <span><%= points[i].longitude %></span>
+                     <span><%= points[i].myselect %></span>
+                </li>
+            <% }} %>
+        </ul>
+    <div id="map"></div>
+   
+         
+        
+        <div id="distance" class="distance-container"></div>
+         
+        <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+       
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script>
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoieXV0dTAwIiwiYSI6ImNrbjE2MmVyazBraXUycG1oczE2NHJqZGMifQ.H-XiIr0ryuMqyN7_vvB-6A';
+             var geojson = {
+              type: 'FeatureCollection',
+              features: [{
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [-77.032, 38.913]
+                },
+                properties: {
+                  title: 'Mapbox',
+                  description: 'Washington, D.C.'
+                }
+              },
+              {
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [-122.414, 37.776]
+                },
+                properties: {
+                  title: 'Mapbox',
+                  description: 'San Francisco, California'
+                }
+                
+              }]
+            };
+            function createMarker(name, lat, long){
+                var y = {
+                    type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [lat, long]
+                },
+               properties: {
+                  title: 'Location',
+                  description: none
+                }
+                };
+                return y;
+            }
+            var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/yutu00/ckn2i8co31phu17mkcbg0j027', // style URL
+            center: [-74.5, 40], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+            });
+           
+            var distanceContainer = document.getElementById('distance');
+ 
+// GeoJSON object to hold our measurement features
+            var geojson = {
+            'type': 'FeatureCollection',
+            'features': []
+            };
+             
+            // Used to draw a line between points
+            var linestring = {
+            'type': 'Feature',
+            'geometry': {
+            'type': 'LineString',
+            'coordinates': []
+            }
+            };
+             
+            map.on('load', function () {
+            map.addSource('geojson', {
+            'type': 'geojson',
+            'data': geojson
+            });
+             
+            // Add styles to the map
+            map.addLayer({
+            id: 'measure-points',
+            type: 'circle',
+            source: 'geojson',
+            paint: {
+            'circle-radius': 5,
+            'circle-color': '#000'
+            },
+            filter: ['in', '$type', 'Point']
+            });
+            map.addLayer({
+            id: 'measure-lines',
+            type: 'line',
+            source: 'geojson',
+            layout: {
+            'line-cap': 'round',
+            'line-join': 'round'
+            },
+            paint: {
+            'line-color': '#000',
+            'line-width': 2.5
+            },
+            filter: ['in', '$type', 'LineString']
+            });
+             
+            map.on('click', function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+            layers: ['measure-points']
+            });
+             
+            // Remove the linestring from the group
+            // So we can redraw it based on the points collection
+            if (geojson.features.length > 1) geojson.features.pop();
+             
+            // Clear the Distance container to populate it with a new value
+            distanceContainer.innerHTML = '';
+             
+            // If a feature was clicked, remove it from the map
+            if (features.length) {
+            var id = features[0].properties.id;
+            geojson.features = geojson.features.filter(function (point) {
+            return point.properties.id !== id;
+            });
+            } else {
+            var point = {
+            'type': 'Feature',
+            'geometry': {
+            'type': 'Point',
+            'coordinates': [e.lngLat.lng, e.lngLat.lat]
+            },
+            'properties': {
+            'id': String(new Date().getTime())
+            }
+            };
+             
+            geojson.features.push(point);
+            }
+             
+            if (geojson.features.length > 1) {
+            linestring.geometry.coordinates = geojson.features.map(
+            function (point) {
+            return point.geometry.coordinates;
+            }
+            );
+             
+            geojson.features.push(turf.bezierSpline(linestring));
+             
+            // Populate the distanceContainer with total distance
+            var value = document.createElement('pre');
+            value.textContent =
+            'Total distance: ' +
+            turf.length(linestring).toLocaleString() +
+            'km';
+            distanceContainer.appendChild(value);
+            }
+             
+            map.getSource('geojson').setData(geojson);
+            });
+            });
+             
+            map.on('mousemove', function (e) {
+            var features = map.queryRenderedFeatures(e.point, {
+            layers: ['measure-points']
+            });
+            // UI indicator for clicking/hovering a point on the map
+            map.getCanvas().style.cursor = features.length
+            ? 'pointer'
+            : 'crosshair';
+            });
+
+             var geojson = {
+        'type': 'FeatureCollection',
+        'features': [
+          {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [-77.032, 38.913]
+            },
+            'properties': {
+              'title': 'Mapbox',
+              'description': 'Washington, D.C.'
+            }
+          },
+          {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [-122.414, 37.776]
+            },
+            'properties': {
+              'title': 'Mapbox',
+              'description': 'San Francisco, California'
+            }
+          }
+        ]
+      };
+    
+    function createFeature(name,lat,lng){
+        var y = {
+            'type': 'Feature',
+          'geometry' : {
+            'type': 'Point', 
+            'coordinates': [lng,lat]
+           },
+           'properties':{
+            'title':'Location',
+            'description':name
+            }
+           };
+         return y;
+      }
+//        geojson.features.push(createFeature("CHINA TOWN",4,4));
+        <%for(var i = 0; i < points.length; i++){ %>
+            geojson.features.push(createFeature("<%=points[i].name%>",<%=points[i].latitude%>,<%= points[i].longitude%>));
+            
+        <%}%>
+        
+  geojson.features.forEach(function (marker) {
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+        
+        // make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+          .setLngLat(marker.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML(
+                '<h3>' +
+                  marker.properties.title +
+                  '</h3><p>' +
+                  marker.properties.description +
+                  '</p>'
+              )
+          )
+          .addTo(map);
+      });
+    
+            /*
+            var marker1 = new mapboxgl.Marker()
+            .setLngLat([12.554729, 55.70651])
+            .addTo(map);
+             
+            // Create a default Marker, colored black, rotated 45 degrees.
+            var marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })
+            .setLngLat([12.65147, 55.608166])
+            .addTo(map);
+            */
+        </script>
+
+    </body>
+</html>
