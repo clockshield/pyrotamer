@@ -85,7 +85,15 @@
 
             <button type="submit">Submit</button>
         </form>
-
+        <h2>Geolocation</h2>
+        <section>
+            <div>
+                <form id="currupdate">
+                    <input type="text" placeholder="geo name" id ="geo name"/>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </section>
         <h2> Update </h2>
         <section>
             <div>
@@ -140,10 +148,9 @@
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
         <script>
             mapboxgl.accessToken = 'pk.eyJ1IjoieXV0dTAwIiwiYSI6ImNrbjE2MmVyazBraXUycG1oczE2NHJqZGMifQ.H-XiIr0ryuMqyN7_vvB-6A';
-
             var map = new mapboxgl.Map({
             container: 'map', // container id
-            style: 'mapbox://styles/yutu00/ckn2i8co31phu17mkcbg0j027', // style URL
+            style: 'mapbox://styles/atann/cknmjlzsk3osb17odr8d8ga4z', // style URL
             center: [-74.5, 40], // starting position [lng, lat]
             zoom: 9 // starting zoom
             });
@@ -151,7 +158,6 @@
             var distanceContainer = document.getElementById('distance');
  
 // GeoJSON object to hold our measurement features
-
              
             // Used to draw a line between points
             var linestring = {
