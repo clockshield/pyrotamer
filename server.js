@@ -19,7 +19,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     
     const db = client.db('prototype-database-1')
     const pointsCollection = db.collection('points')
-    
+    const linepointsCollection = db.collection('linepoints')
     //=========================
     //Utilizing set and use functions
     //=========================
@@ -50,6 +50,13 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
         .catch(error => console.error(error))
     })
+    app.post('/linepoints', (req, res) =>{
+        linepointsCollection.insertOne(req.body)
+        .then(result => {
+          res.redirect('/')
+        })
+        .catch(error => console.error(error))
+    })
     //update values
     app.put('/points', (req, res) => {
         console.log(req.body.name)
@@ -60,6 +67,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
             name: req.body.name,
             latitude: req.body.latitude,
             longitude: req.body.longitude
+            //submit: req.body.myselect
           }
         },
         {
