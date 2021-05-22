@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <title>Prototype App</title>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -18,6 +20,95 @@
         /* The width is the width of the web page */
         
       }
+       * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  body {
+    color: #C70039 ;
+    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin: 0;
+    font-weight: 400;
+    line-height: 0px;
+    padding: 20px 0px 5px 20px;
+  }
+  input[type=text] {
+    width: 100px;
+    transition: width 0.6s ease-in-out;
+  border: none;
+  border-bottom: 2px solid black;
+
+
+}
+input[type=text]:focus {
+  width: 33%;
+}
+input[type=float] {
+    width: 100px;
+    transition: width 0.6s ease-in-out;
+  border: none;
+  border-bottom: 2px solid black;
+  
+}
+input[type=float]:focus {
+  width: 33%;
+}
+  form{
+    padding:20px 20px;
+  }
+  button{
+    background-color: black;
+  color: white;
+  border: 2px solid #000000; 
+  opacity: 0.5;
+  }
+  
+  button:hover{
+     
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 1;
+  }
+  select{
+    background-color: DodgerBlue;
+  }
+
+ 
+  /* The page is split between map and sidebar - the sidebar gets 1/3, map
+  gets 2/3 of the page. You can adjust this to your personal liking. */
+  .sidebar {
+    position: absolute;
+    width: 33.333333333%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    border-right: 10px solid rgba(35, 251, 181, 0.25);
+  }
+
+  .map {
+    position: absolute;
+    left: 33.33333333333%;
+    width: 66.666666666%;
+    top: 0;
+    bottom: 0;
+  }
+
+  .heading {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 10px;
+  }
     </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
@@ -65,8 +156,8 @@
                 rel="stylesheet"
                 />
             <style>
-            body { margin: 0; padding: 0; }
-            #map { position: absolute; top: 100; bottom: 100; width: 100%; }
+           
+            #map { position: absolute; top: 100; bottom: 100; width: 100%; height: 100%;}
             .marker {
           background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
           background-size: cover;
@@ -87,7 +178,8 @@
             <!-- Geocoder plugin -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
-
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
 <!-- Turf.js plugin -->
 <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 
@@ -95,6 +187,7 @@
 
     <body>
          <style>
+
         .distance-container {
         position: absolute;
         top: 450px;
@@ -112,13 +205,20 @@
         padding: 5px 10px;
         border-radius: 3px;
         }
+
         </style>
-        <h1>Enter Name, Latitude, Longitude and Category</h1>
+        
+
+    
+    <div class='sidebar'>
+  
+    
+    <h2><strong>Enter Name, Latitude, Longitude and Category</strong></h2>
 
         <form action="/points" method="POST">
-            <input type="text" placeholder="name" name="name" />
-            <input type="float" placeholder="latitude" name="latitude" />
-            <input type="float" placeholder="longitude" name="longitude" />
+            <input type="text" placeholder="NAME" name="name" />
+            <input type="float" placeholder="LATITUDE" name="latitude" />
+            <input type="float" placeholder="LONGITUDE" name="longitude" />
               <select name = 'myselect'>
                 <option value="Hand Lines">Hand Lines</option>
                 <option value="Dozer Lines">Dozer Lines</option>
@@ -131,13 +231,13 @@
             <button type="submit">Submit</button>
         </form>
 
-        <h2> Update </h2>
+        <h2><strong> Update </strong></h2>
         <section>
             <div>
                 <form id="update">
-                    <input type="text" placeholder="new name" id ="new name"/>
-                    <input type="float" placeholder="new latitude" id = "new latitude"/>
-                    <input type="float" placeholder="new longitude" id = "new longitude"/>
+                    <input type="text" placeholder="NEW NAME" id ="new name"/>
+                    <input type="float" placeholder="NEW LATITUDE" id = "new latitude"/>
+                    <input type="float" placeholder="NEW LONGITUDE" id = "new longitude"/>
                      <select name = 'myselect'>
                         <option value="Hand Lines">Hand Lines</option>
                         <option value="Dozer Lines">Dozer Lines</option>
@@ -148,35 +248,37 @@
                 </form>
             </div>
         </section>
-        <h2> Geolocation</h2>
+        <h2><strong> Geolocation </strong></h2>
         <section> 
             <div>
                 <form  id = "loca">
-                    <input type = "text" placeholder = "geo name" id = "geo name" />
+                    <input type = "text" placeholder = "GEO NAME" id = "geo name" />
                     <button>Submit</button>
                 </form>
             </div>
         </section>
-        <h2> DrawLine </h2>
+        <h2><strong> DrawLine </strong></h2>
         <section>
             <div>
                 <form action = "/linepoints" method = "POST" id = "enter points">
-                    <input type="float" placeholder="x-start point" id ="x1" name = "firstX"/>
-                    <input type="float" placeholder="y-start point" id ="y1" name = "firstY"/>
-                    <input type="float" placeholder="x-end point" id ="x2" name = "secondX"/>
-                    <input type="float" placeholder="y-end point" id ="y2" name = "secondY"/>
+                    <input type="float" placeholder="X START" id ="x1" name = "firstX"/>
+                    <input type="float" placeholder="Y START" id ="y1" name = "firstY"/>
+                <div>
+                    <input type="float" placeholder="X END" id ="x2" name = "secondX"/>
+                    <input type="float" placeholder="Y END" id ="y2" name = "secondY"/>
                     <button id = "delete button">Submit</button>
+                </div>
                 </form>
             </div>
             <div id="message"></div>
 
         </section>
         <script></script>
-         <h2> Delete </h2>
+         <h2><strong> Delete </strong></h2>
         <section>
             <div>
                 <form id="delete">
-                    <input type="text" placeholder="delete name" id ="delete name"/>
+                    <input type="text" placeholder="DELETE NAME" id ="delete name"/>
                     <button id = "delete button">Delete</button>
                 </form>
             </div>
@@ -184,7 +286,7 @@
         </section>
         <script src = "main.js"></script>
         
-        <h2> Points </h2>
+        <h2><strong> Points </strong></h2>
 
         <ul class="points">
             <!-- Loop through quotes -->
@@ -198,10 +300,11 @@
                 </li>
             <% }} %>
         </ul>
-
+  
+  
+</div>
+<div id="map" class="map"></div>
     
-    <div id="map"></div>
-   
          
         
         <div id="distance" class="distance-container"></div>
@@ -291,52 +394,57 @@
             'features': []
             };
 
-            var fires = {
-                "type": "FeatureCollection", "features":
-                [
-                {
-                  "type": "Feature",
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                      37.37704666042266, -122.03874004968344
-                    ]
-                  },
-                  "properties": {
-                    "phoneFormatted": "(408) 730-7100",
-                    "phone": "4087307100",
-                    "address": "700 All American Way",
-                    "city": "Sunnyvale",
-                    "country": "United States",
-                    "postalCode": "94086",
-                    "state": "CA"
-                  }
-                },
-                 {
-                  "type": "Feature",
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                     37.32986792821143, -122.02397960454111
-                    ]
-                  },
-                  "properties": {
-                    "phoneFormatted": "(408) 299-3144",
-                    "phone": "4082993144",
-                    "address": "20215 Stevens Creek Blvd",
-                    "city": "Cupertino",
-                    "country": "United States",
-                    "postalCode": "95014",
-                    "state": "CA"
-                  }
-                }
-                ]
-            };
-            /*
-            fires.features.forEach(function(fire, i){
-              fires.properties.id = i;
+            var stores = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.02796745123585, 37.327514500849716
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(408) 299-3144",
+        "phone": "4082993144",
+        "address": "20215 Stevens Creek Blvd",
+        "city": "Cupertino",
+        "country": "United States",
+        "crossStreet": "at 22nd St NW",
+        "postalCode": "20037",
+        "state": "CA",
+        
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.8595630102663, 37.32341366938367
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(408) 794-7000",
+        "phone": "4087947000",
+        "address": "1661 Senter Rd",
+        "city": "San Jose",
+        "country": "United States",
+        "crossStreet": "at 22nd St NW",
+        "postalCode": "20037",
+        "state": "CA"
+        //"name": "San Jose Fire Department Administration"
+      }
+    }
+
+  ]
+};
+            
+            stores.features.forEach(function(store, i){
+              store.properties.id = i;
             });
-            */
+            
             map.on('load', function (e) {
                   /* Add the data to your map as a layer */
                   map.addLayer({
@@ -345,10 +453,36 @@
                     /* Add a GeoJSON source containing place coordinates and information. */
                     "source": {
                       "type": "geojson",
-                      "data": fires
+                      "data": stores
                     }
                   });
                 });
+            function flytoStore(currentFeature){
+                map.flyTo({
+                    center: currentFeature.geometry.coordinates,
+                    zoom: 10
+                });
+            }
+            function createPopUp(currentFeature){
+                var popUps = document.getElementsByClassName('mapboxgl-popup');
+                if(popUps[0])popUps[0].remove();
+                var popup = new mapboxgl.Popup({ closeOnClick: false })
+                .setLngLat(currentFeature.geometry.coordinates)
+                .setHTML('Fire Department'+
+                  '<h4>' + currentFeature.properties.address + '</h4>')
+                .addTo(map);
+            }
+            map.on('click', function(e){
+                var features = map.queryRenderedFeatures(e.point, {
+                    layers:['locations']
+                });
+                if(features.length){
+                    var cP = features[0];
+                    flytoStore(cP);
+                    createPopUp(cP);
+                    
+              }
+            });
              var geocoder = new MapboxGeocoder({
               accessToken: mapboxgl.accessToken, // Set the access token
               mapboxgl: mapboxgl, // Set the mapbox-gl instance
@@ -590,7 +724,7 @@
            };
          return y;
       }
-      
+
             var geojson1 = {
         'type': 'FeatureCollection',
         'features': [
