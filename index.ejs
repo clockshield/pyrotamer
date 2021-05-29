@@ -3,8 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <title>Prototype App</title>
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -13,115 +11,25 @@
         <!-- Geocoder plugin -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
-
 <!-- Turf.js plugin -->
 <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>*/
         width: 50%;
         /* The width is the width of the web page */
         
       }
-       * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  body {
-    color: #C70039 ;
-    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h2 {
-    font-size: 22px;
-    margin: 0;
-    font-weight: 400;
-    line-height: 0px;
-    padding: 20px 0px 5px 20px;
-  }
-  input[type=text] {
-    width: 100px;
-    transition: width 0.6s ease-in-out;
-  border: none;
-  border-bottom: 2px solid black;
-
-
-}
-input[type=text]:focus {
-  width: 33%;
-}
-input[type=float] {
-    width: 100px;
-    transition: width 0.6s ease-in-out;
-  border: none;
-  border-bottom: 2px solid black;
-  
-}
-input[type=float]:focus {
-  width: 33%;
-}
-  form{
-    padding:20px 20px;
-  }
-  button{
-    background-color: black;
-  color: white;
-  border: 2px solid #000000; 
-  opacity: 0.5;
-  }
-  
-  button:hover{
-     
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    opacity: 1;
-  }
-  select{
-    background-color: DodgerBlue;
-  }
-
- 
-  /* The page is split between map and sidebar - the sidebar gets 1/3, map
-  gets 2/3 of the page. You can adjust this to your personal liking. */
-  .sidebar {
-    position: absolute;
-    width: 33.333333333%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    border-right: 10px solid rgba(35, 251, 181, 0.25);
-  }
-
-  .map {
-    position: absolute;
-    left: 33.33333333333%;
-    width: 66.666666666%;
-    top: 0;
-    bottom: 0;
-  }
-
-  .heading {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-  }
     </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-
+        
     <link rel="stylesheet" type="text/css" href="./style.css" />
      <script type = "text/javascript">
-        
+        //showing your own location 
          function showLocation(position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
             alert("Latitude : " + latitude + " Longitude: " + longitude);
          }
-
+         //error handling in case position finding is not allowed.
          function errorHandler(err) {
             if(err.code == 1) {
                alert("Error: Access is denied!");
@@ -131,7 +39,6 @@ input[type=float]:focus {
          }
             
          function getLocation() {
-
             if(navigator.geolocation) {
                
                // timeout at 60000 milliseconds (60 seconds)
@@ -146,6 +53,7 @@ input[type=float]:focus {
     <meta charset="utf-8" />
                 <title>Demo: Add custom markers in Mapbox GL JS</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <!--  linking google fonts-->
                 <link
                 href="https://fonts.googleapis.com/css?family=Open+Sans"
                 rel="stylesheet"
@@ -156,8 +64,9 @@ input[type=float]:focus {
                 rel="stylesheet"
                 />
             <style>
-           
-            #map { position: absolute; top: 100; bottom: 100; width: 100%; height: 100%;}
+            body { margin: 0; padding: 0; }
+/*                //mapbox icon and defining the map*/
+            #map { position: absolute; top: 100; bottom: 100; width: 100%; }
             .marker {
           background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
           background-size: cover;
@@ -173,13 +82,11 @@ input[type=float]:focus {
         text-align: center;
         font-family: 'Open Sans', sans-serif;
         }
-
             </style>
             <!-- Geocoder plugin -->
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
 <!-- Turf.js plugin -->
 <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 
@@ -187,7 +94,6 @@ input[type=float]:focus {
 
     <body>
          <style>
-
         .distance-container {
         position: absolute;
         top: 450px;
@@ -205,20 +111,14 @@ input[type=float]:focus {
         padding: 5px 10px;
         border-radius: 3px;
         }
-
         </style>
-        
-
-    
-    <div class='sidebar'>
-  
-    
-    <h2><strong>Enter Name, Latitude, Longitude and Category</strong></h2>
+        <h1>Enter Name, Latitude, Longitude and Category</h1>
+        <!-- POST function putting the values into the database -->
 
         <form action="/points" method="POST">
-            <input type="text" placeholder="NAME" name="name" />
-            <input type="float" placeholder="LATITUDE" name="latitude" />
-            <input type="float" placeholder="LONGITUDE" name="longitude" />
+            <input type="text" placeholder="name" name="name" />
+            <input type="float" placeholder="latitude" name="latitude" />
+            <input type="float" placeholder="longitude" name="longitude" />
               <select name = 'myselect'>
                 <option value="Hand Lines">Hand Lines</option>
                 <option value="Dozer Lines">Dozer Lines</option>
@@ -230,14 +130,14 @@ input[type=float]:focus {
 
             <button type="submit">Submit</button>
         </form>
-
-        <h2><strong> Update </strong></h2>
+        <!-- PUT function updating already pre existing values -->
+        <h2> Update </h2>
         <section>
             <div>
                 <form id="update">
-                    <input type="text" placeholder="NEW NAME" id ="new name"/>
-                    <input type="float" placeholder="NEW LATITUDE" id = "new latitude"/>
-                    <input type="float" placeholder="NEW LONGITUDE" id = "new longitude"/>
+                    <input type="text" placeholder="new name" id ="new name"/>
+                    <input type="float" placeholder="new latitude" id = "new latitude"/>
+                    <input type="float" placeholder="new longitude" id = "new longitude"/>
                      <select name = 'myselect'>
                         <option value="Hand Lines">Hand Lines</option>
                         <option value="Dozer Lines">Dozer Lines</option>
@@ -248,37 +148,38 @@ input[type=float]:focus {
                 </form>
             </div>
         </section>
-        <h2><strong> Geolocation </strong></h2>
+<!--        uploading current position-->
+        <h2> Geolocation</h2>
         <section> 
             <div>
                 <form  id = "loca">
-                    <input type = "text" placeholder = "GEO NAME" id = "geo name" />
+                    <input type = "text" placeholder = "geo name" id = "geo name" />
                     <button>Submit</button>
                 </form>
             </div>
         </section>
-        <h2><strong> DrawLine </strong></h2>
+        <h2> DrawLine </h2>
         <section>
             <div>
+                <!-- POST functions for inputting line points into the database -->
                 <form action = "/linepoints" method = "POST" id = "enter points">
-                    <input type="float" placeholder="X START" id ="x1" name = "firstX"/>
-                    <input type="float" placeholder="Y START" id ="y1" name = "firstY"/>
-                <div>
-                    <input type="float" placeholder="X END" id ="x2" name = "secondX"/>
-                    <input type="float" placeholder="Y END" id ="y2" name = "secondY"/>
+                    <input type="float" placeholder="x-start point" id ="x1" name = "firstX"/>
+                    <input type="float" placeholder="y-start point" id ="y1" name = "firstY"/>
+                    <input type="float" placeholder="x-end point" id ="x2" name = "secondX"/>
+                    <input type="float" placeholder="y-end point" id ="y2" name = "secondY"/>
                     <button id = "delete button">Submit</button>
-                </div>
                 </form>
             </div>
             <div id="message"></div>
 
         </section>
         <script></script>
-         <h2><strong> Delete </strong></h2>
+         <h2> Delete </h2>
         <section>
             <div>
+                <!-- deleting a value -->
                 <form id="delete">
-                    <input type="text" placeholder="DELETE NAME" id ="delete name"/>
+                    <input type="text" placeholder="delete name" id ="delete name"/>
                     <button id = "delete button">Delete</button>
                 </form>
             </div>
@@ -286,8 +187,8 @@ input[type=float]:focus {
         </section>
         <script src = "main.js"></script>
         
-        <h2><strong> Points </strong></h2>
-
+        <h2> Points </h2>
+ <!-- Posting all the points in the database(not line points) -->
         <ul class="points">
             <!-- Loop through quotes -->
             <% for(var i = 0; i < points.length; i++) {%>
@@ -300,11 +201,10 @@ input[type=float]:focus {
                 </li>
             <% }} %>
         </ul>
-  
-  
-</div>
-<div id="map" class="map"></div>
+
     
+    <div id="map"></div>
+   
          
         
         <div id="distance" class="distance-container"></div>
@@ -316,11 +216,8 @@ input[type=float]:focus {
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
         <script>
              
-
             mapboxgl.accessToken = 'pk.eyJ1IjoieXV0dTAwIiwiYSI6ImNrbjE2MmVyazBraXUycG1oczE2NHJqZGMifQ.H-XiIr0ryuMqyN7_vvB-6A';
-
-
-            
+            //creating the map
             var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/atann/cknmjlzsk3osb17odr8d8ga4z', // style URL
@@ -336,7 +233,7 @@ input[type=float]:focus {
          
         ]
       };
-    
+    //helper function to create json for the feature push
     function createFeature(name,lat,lng){
         var y = {
             'type': 'Feature',
@@ -351,6 +248,7 @@ input[type=float]:focus {
            };
          return y;
       }
+            //pushing on points onto the map with every location on the database
 //        geojson.features.push(createFeature("CHINA TOWN",4,4));
         <%for(var i = 0; i < points.length; i++){ %>
             geojson.features.push(createFeature("<%=points[i].name%>",<%=points[i].latitude%>,<%= points[i].longitude%>));
@@ -393,58 +291,52 @@ input[type=float]:focus {
             'type': 'FeatureCollection',
             'features': []
             };
-
-            var stores = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -122.02796745123585, 37.327514500849716
-        ]
-      },
-      "properties": {
-        "phoneFormatted": "(408) 299-3144",
-        "phone": "4082993144",
-        "address": "20215 Stevens Creek Blvd",
-        "city": "Cupertino",
-        "country": "United States",
-        "crossStreet": "at 22nd St NW",
-        "postalCode": "20037",
-        "state": "CA",
-        
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -121.8595630102663, 37.32341366938367
-        ]
-      },
-      "properties": {
-        "phoneFormatted": "(408) 794-7000",
-        "phone": "4087947000",
-        "address": "1661 Senter Rd",
-        "city": "San Jose",
-        "country": "United States",
-        "crossStreet": "at 22nd St NW",
-        "postalCode": "20037",
-        "state": "CA"
-        //"name": "San Jose Fire Department Administration"
-      }
-    }
-
-  ]
-};
-            
-            stores.features.forEach(function(store, i){
-              store.properties.id = i;
+            var fires = {
+                "type": "FeatureCollection", "features":
+                [
+                {
+                  "type": "Feature",
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      37.37704666042266, -122.03874004968344
+                    ]
+                  },
+                  "properties": {
+                    "phoneFormatted": "(408) 730-7100",
+                    "phone": "4087307100",
+                    "address": "700 All American Way",
+                    "city": "Sunnyvale",
+                    "country": "United States",
+                    "postalCode": "94086",
+                    "state": "CA"
+                  }
+                },
+                 {
+                  "type": "Feature",
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                     37.32986792821143, -122.02397960454111
+                    ]
+                  },
+                  "properties": {
+                    "phoneFormatted": "(408) 299-3144",
+                    "phone": "4082993144",
+                    "address": "20215 Stevens Creek Blvd",
+                    "city": "Cupertino",
+                    "country": "United States",
+                    "postalCode": "95014",
+                    "state": "CA"
+                  }
+                }
+                ]
+            };
+            /*
+            fires.features.forEach(function(fire, i){
+              fires.properties.id = i;
             });
-            
+            */
             map.on('load', function (e) {
                   /* Add the data to your map as a layer */
                   map.addLayer({
@@ -453,43 +345,16 @@ input[type=float]:focus {
                     /* Add a GeoJSON source containing place coordinates and information. */
                     "source": {
                       "type": "geojson",
-                      "data": stores
+                      "data": fires
                     }
                   });
                 });
-            function flytoStore(currentFeature){
-                map.flyTo({
-                    center: currentFeature.geometry.coordinates,
-                    zoom: 10
-                });
-            }
-            function createPopUp(currentFeature){
-                var popUps = document.getElementsByClassName('mapboxgl-popup');
-                if(popUps[0])popUps[0].remove();
-                var popup = new mapboxgl.Popup({ closeOnClick: false })
-                .setLngLat(currentFeature.geometry.coordinates)
-                .setHTML('Fire Department'+
-                  '<h4>' + currentFeature.properties.address + '</h4>')
-                .addTo(map);
-            }
-            map.on('click', function(e){
-                var features = map.queryRenderedFeatures(e.point, {
-                    layers:['locations']
-                });
-                if(features.length){
-                    var cP = features[0];
-                    flytoStore(cP);
-                    createPopUp(cP);
-                    
-              }
-            });
              var geocoder = new MapboxGeocoder({
               accessToken: mapboxgl.accessToken, // Set the access token
               mapboxgl: mapboxgl, // Set the mapbox-gl instance
               marker: true, // Use the geocoder's default marker style
               bbox: [-122.55079378304764,36.962127036976085,-121.30074534129199,38.06144359131045] // Set the bounding box coordinates
             });
-
             map.addControl(geocoder, 'top-left');
             // Used to draw a line between points
             var linestring = {
@@ -587,16 +452,12 @@ input[type=float]:focus {
             });
             });
              
-            map.on('mousemove', function (e) {
-            var features = map.queryRenderedFeatures(e.point, {
-            layers: ['measure-points']
-            });
+//            map.on('mousemove', function (e) {
+//            var features = map.queryRenderedFeatures(e.point, {
+//            layers: ['measure-points']
+//            });
             // UI indicator for clicking/hovering a point on the map
-            map.getCanvas().style.cursor = features.length
-            ? 'pointer'
-            : 'crosshair';
-            });
-
+            
             var startingPoint = {
                 type: "FeatureCollection",
                 features: [ 
@@ -607,7 +468,6 @@ input[type=float]:focus {
                     geometry: {
                         type: "Point",
                         coordinates: [50, 15],
-
                     }}
                 ]
             }
@@ -621,7 +481,6 @@ input[type=float]:focus {
                     geometry: {
                         type: "Point",
                         coordinates: [12, 60],
-
                     }}
                 ]
             }
@@ -653,122 +512,129 @@ input[type=float]:focus {
                   });
                   
                 });
-
             var popup = new mapboxgl.Popup();
-
-            map.on('mousemove', function(e) {
-              var features = map.queryRenderedFeatures(e.point, { layers: ['startingPoint', 'endingPoint'] });
-              if (!features.length) {
-                popup.remove();
-                return;
-              }
-              var feature = features[0];
-
-              popup.setLngLat(feature.geometry.coordinates)
-                .setHTML(feature.properties.name)
-                .addTo(map);
-
-              map.getCanvas().style.cursor = features.length ? 'pointer' : '';
-            });
-
+//            map.on('mousemove', function(e) {
+//              var features = map.queryRenderedFeatures(e.point, { layers: ['startingPoint', 'endingPoint'] });
+//              if (!features.length) {
+//                popup.remove();
+//                return;
+//              }
+//              var feature = features[0];
+//              popup.setLngLat(feature.geometry.coordinates)
+//                .setHTML(feature.properties.name)
+//                .addTo(map);
+//              map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+//            });
+//            
+//            map.on('click', function(e) {
+//              // Return any features from the 'libraries' layer whenever the map is clicked
+//              var startingFeatures = map.queryRenderedFeatures(e.point, { layers: ['startingPoint'] });
+//              if (!libraryFeatures.length) {
+//                return;
+//              }
+//              var startingFeature = startingFeatures[0];
+//              // Using Turf, find the nearest hospital to library clicked
+//              var endingFeatures = turf.nearest(startingFeature, endingPoint);
+//              // If a nearest library is found
+//              if (endingFeatures !== null) {
+//                // Update the 'nearest-library' data source to include
+//                // the nearest library
+//                map.getSource('ending-Feature').setData({
+//                  type: 'FeatureCollection',
+//                  features: [
+//                    endingFeature
+//                  ]
+//                });
+//                // Create a new circle layer from the 'nearest-library' data source
+//                map.addLayer({
+//                  id: 'ending-Feature',
+//                  type: 'circle',
+//                  source: 'ending-Feature',
+//                  paint: {
+//                    'circle-radius': 12,
+//                    'circle-color': '#486DE0'
+//                  }
+//                }, 'endingPoint');
+//              }
+//            });
             
-            map.on('click', function(e) {
-              // Return any features from the 'libraries' layer whenever the map is clicked
-              var startingFeatures = map.queryRenderedFeatures(e.point, { layers: ['startingPoint'] });
-              if (!libraryFeatures.length) {
-                return;
-              }
-              var startingFeature = startingFeatures[0];
-
-              // Using Turf, find the nearest hospital to library clicked
-              var endingFeatures = turf.nearest(startingFeature, endingPoint);
-
-              // If a nearest library is found
-              if (endingFeatures !== null) {
-                // Update the 'nearest-library' data source to include
-                // the nearest library
-                map.getSource('ending-Feature').setData({
-                  type: 'FeatureCollection',
-                  features: [
-                    endingFeature
-                  ]
-                });
-                // Create a new circle layer from the 'nearest-library' data source
-                map.addLayer({
-                  id: 'ending-Feature',
-                  type: 'circle',
-                  source: 'ending-Feature',
-                  paint: {
-                    'circle-radius': 12,
-                    'circle-color': '#486DE0'
-                  }
-                }, 'endingPoint');
-              }
-            });
-         function createPoint(lat1,lng1, lat2, lng2){
-            var y = {
-            type: "FeatureCollection",
-                features: [ 
-                    {type: "feature",
-                    properties: {
-                        name: "startingPointDefault"
-                    },
-                    geometry: {
-                        type: "Point",
-                        coordinates: [
-                            [lat1, lng1],[lat2, lng2]
-                        ]
-
-                    }}
-                ]
-           };
-         return y;
-      }
-
-            var geojson1 = {
-        'type': 'FeatureCollection',
-        'features': [
-            {
+            
+            
+    function createLineFeature(x1,x2,y1,y2){
+        var y = {
                 'type': 'Feature',
                 'geometry': {
                     'type': 'LineString',
                     'properties': {},
                     'coordinates': [
-                        [50, 15],
-                        [12, 60]
+                        [x1, y1],
+                        [x2, y2]
                     ]
                 }
-            }
-        ]
-    };
-
-    
-
-    map.on('load', function () {
-        map.addSource('LineString', {
+           };
+         return y;
+      }
+    var linejson = {'type': 'FeatureCollection',
+                'features': []
+                   };
+    <%for(var i = 0; i < linepoints.length; i++){ %>
+        linejson.features.push(createLineFeature(<%=linepoints[i].firstX%>,<%=linepoints[i].secondX%>,<%= linepoints[i].firstY%>,<%= linepoints[i].secondY%>));   
+    <%}%>
+    //ADDING lines to the map
+map.on('load', function () {
+        map.addSource('route', {
             'type': 'geojson',
-            'data': geojson1
+            'data': {
+                'type': 'FeatureCollection',
+                'features': linejson
+            }
         });
         map.addLayer({
-            'id': 'LineString',
+            'id': 'route',
             'type': 'line',
-            'source': 'LineString',
+            'source': 'route',
             'layout': {
                 'line-join': 'round',
                 'line-cap': 'round'
             },
             'paint': {
-                'line-color': '#BF93E4',
-                'line-width': 5
-                
+                'line-color': '#888',
+                'line-width': 15
             }
         });
-
     });
-
+//        var geojson1 = {
+//        'type': 'FeatureCollection',
+//        'features': [
+//            {
+//                'type': 'Feature',
+//                'geometry': {
+//                    'type': 'LineString',
+//                    'properties': {},
+//                    'coordinates': [
+//                        [50, 15],
+//                        [12, 60]
+//                    ]
+//                }
+//            },
+//            {
+//                'type': 'Feature',
+//                'geometry': {
+//                    'type': 'LineString',
+//                    'properties': {},
+//                    'coordinates': [
+//                        [50, 15],
+//                        [12, 60]
+//                    ]
+//                }
+//            }
+//            
+//        ]
+//    };
+    
+ 
 
             
-
         </script>
         
 
