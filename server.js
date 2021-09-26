@@ -1,3 +1,4 @@
+// we define some constants to create our applications and start our mongo db database with our key.
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -12,7 +13,6 @@ var url = "mongodb+srv://fire:tamer@cluster0.3a4ho.mongodb.net/practice1?retryWr
 MongoClient.connect(url, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
-    
     //=========================
     //Creating database
     //=========================
@@ -36,11 +36,16 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     
     //reading inputs
     app.get('/', (req, res) => {
-      pointsCollection.find().toArray()
-        .then(points => {
-          res.render('index.ejs', { points: points })
-        })
+        linepointsCollection.find().toArray()
+        .then(linepoints => {
+            pointsCollection.find().toArray()
+                .then(points => {
+                  res.render('index.ejs', { points: points, linepoints:linepoints})
+                }
+        )})
         .catch(/* ... */)
+      
+      
     })
     //posting values
     app.post('/points', (req, res) => {
@@ -50,6 +55,8 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         })
         .catch(error => console.error(error))
     })
+    
+    //posting line values
     app.post('/linepoints', (req, res) =>{
         linepointsCollection.insertOne(req.body)
         .then(result => {
@@ -59,15 +66,14 @@ MongoClient.connect(url, { useUnifiedTopology: true })
     })
     //update values
     app.put('/points', (req, res) => {
-        console.log(req.body.name)
       pointsCollection.findOneAndUpdate(
         { name: req.body.name },
         {
           $set: {
             name: req.body.name,
             latitude: req.body.latitude,
-            longitude: req.body.longitude
-            //submit: req.body.myselect
+            longitude: req.body.longitude,
+            myselect: req.body.myselect
           }
         },
         {
@@ -78,7 +84,7 @@ MongoClient.connect(url, { useUnifiedTopology: true })
         .catch(error => console.error(error))
     })
     //listen port
-    app.listen(1423, function () {
+    app.listen(process.env.PORT || 1423, function () {
       console.log(`listening on 1423`)
     })
 
