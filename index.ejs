@@ -5,100 +5,205 @@
         <title>Prototype App</title>
     <style type="text/css">
       /* Set the size of the div element that contains the map */
+        html,
+body {
+    top:100 px
+  min-height: 100%;
+    height:100%;
+  margin: 0px;
+  padding: 0px
+}
+#top{
+    width:100%;
+    height:10%;
+    background:white;
+}
+#content {
+  position: absolute;
+}
+
+        #wrap {
+
+  width: 35%;
+margin-top:6%;
+height:77.5vh;
+margin-left:2%;
+
+
+  background: #fff;
+  overflow: auto;
+  padding: 15px;
+            
+
+  
+            
+}
+                #wrap2 {
+
+  width: 35%;
+margin-top:6%;
+height:77.5vh;
+margin-left:2%;
+
+
+  background: #fff;
+  overflow: auto;
+  padding: 15px;
+            
+
+  
+            
+}
+                #wrap3 {
+
+  width: 35%;
+margin-top:6%;
+height:40vh;
+margin-left:2%;
+
+
+  background: #fff;
+  overflow: auto;
+  padding: 15px;
+            
+
+  
+            
+}
+        #reload{
+            margin-left:38.5%;
+        }
+        .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  overflow: auto; /* Enable scroll if needed */
+    width:100%;
+            height:100vh;
+}
+      
+
+    
       #map {
-@@ -13,115 +11,25 @@
-        <!-- Geocoder plugin -->
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
-<!-- Turf.js plugin -->
-<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>*/
-        width: 50%;
-        /* The width is the width of the web page */
-        
+          z-index: 2
+          width: 100%;
+  min-height: 100vh;
+
+          
       }
-       * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  body {
-    color: #C70039 ;
-    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-  }
-  h2 {
-    font-size: 22px;
-    margin: 0;
-    font-weight: 400;
-    line-height: 0px;
-    padding: 20px 0px 5px 20px;
-  }
-  input[type=text] {
-    width: 100px;
-    transition: width 0.6s ease-in-out;
+        form{
+            margin: 0 auto;
+        }
+        span,ul,li,form,h1,h2{
+            text-align: center; 
+            font-family: Tahoma, Sans-serif;
+        }
+        body{
+            font-family:"Noto Sans";
+
+        }
+        button {
+  background-color: #4dc9bf; /* Green */
   border: none;
-  border-bottom: 2px solid black;
-}
-input[type=text]:focus {
-  width: 33%;
-}
-input[type=float] {
-    width: 100px;
-    transition: width 0.6s ease-in-out;
-  border: none;
-  border-bottom: 2px solid black;
-  
-}
-input[type=float]:focus {
-  width: 33%;
-}
-  form{
-    padding:20px 20px;
-  }
-  button{
-    background-color: black;
   color: white;
-  border: 2px solid #000000; 
-  opacity: 0.5;
-  }
-  
-  button:hover{
-     
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    opacity: 1;
-  }
-  select{
-    background-color: DodgerBlue;
-  }
- 
-  /* The page is split between map and sidebar - the sidebar gets 1/3, map
-  gets 2/3 of the page. You can adjust this to your personal liking. */
-  .sidebar {
-    position: absolute;
-    width: 33.333333333%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    border-right: 10px solid rgba(35, 251, 181, 0.25);
-  }
-  .map {
-    position: absolute;
-    left: 33.33333333333%;
-    width: 66.666666666%;
-    top: 0;
-    bottom: 0;
-  }
-  .heading {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-  }
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+        input {
+  padding: 5px 10px;
+  text-align: center;
+
+}
+                #topbar{
+            z-index: 9;
+            background-color:white;
+            width: 100%;
+            position:absolute;
+                    height: 7.5vh;
+        }
+        
+                .topbarbutton1 {
+    background-color:white;
+  border: none;
+  color: gray;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+}
+                        .topbarbutton2 {
+    background-color:white;
+
+  border: none;
+  color: gray;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+}
+                        .topbarbutton3 {
+    background-color:white;
+  border: none;
+  color: gray;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+}
+        teamname{
+            height:7.5vh;
+            margin:0;
+
+        }
+        .topbarbutton1:hover{
+             background-color: #0dc0bf; /* Green */
+  border: none;
+  color: white;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+        }
+        .topbarbutton2:hover{
+             background-color: #0dc0bf; /* Green */
+  border: none;
+  color: white;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+        }
+        .topbarbutton3:hover{
+             background-color: #0dc0bf; /* Green */
+  border: none;
+  color: white;
+  height:7.5vh;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;;
+  font-size: 16px;
+    margin:0;
+        }
+        
     </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
@@ -175,100 +280,88 @@ input[type=float]:focus {
   </head> 
 
     <body>
-         <style>
-        .distance-container {
-        position: absolute;
-        top: 450px;
-        left: 10px;
-        z-index: 1;
-        }
-         
-        .distance-container > * {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: #fff;
-        font-size: 11px;
-        line-height: 18px;
-        display: block;
-        margin: 0;
-        padding: 5px 10px;
-        border-radius: 3px;
-        }
-        </style>
-        <h1>Enter Name, Latitude, Longitude and Category</h1>
-        <!-- POST function putting the values into the database -->
+        <div id="map" style = "position:absolute;"></div>
+        <div id="topbar">                                               
+            <button class= "topbarbutton1"id="barbutton1">Upload Points</button>
+            <button class= "topbarbutton2"id="barbutton2">Point info</button>
+            <button class= "topbarbutton3"id="barbutton3">Upload Lines</button>            
+            
+            
 
-        <form action="/points" method="POST">
-            <input type="text" placeholder="name" name="name" />
-            <input type="float" placeholder="latitude" name="latitude" />
-            <input type="float" placeholder="longitude" name="longitude" />
-              <select name = 'myselect'>
+        </div>
+        <div style="position:absolute;">
+            
+            
+            <div class = "modal" id="cp" > 
+        <div id="wrap">
+
+        <h1 >Enter Name, Latitude, Longitude and Category</h1>
+        <!-- POST function putting tfhe values into the database -->
+
+        <form style="text-align: center;" action="/points" method="POST">
+            <input id = 'box' type="text" style="height:40px; width:60px;" placeholder="name" name="name" />
+            <input id = 'box' type="float" style="height:40px; width:60px;" placeholder="latitude" name="latitude" />
+            <input id = 'box' type="float" style="height:40px; width:60px;" placeholder="longitude" name="longitude" />
+              <select id = 'box' style="height:50px; width:90px;" name = 'myselect'>
                 <option value="Hand Lines">Hand Lines</option>
                 <option value="Dozer Lines">Dozer Lines</option>
                 <option value="Fire Truck">Fire Truck</option>
                 
-              </select>
+              </select >
 
 
 
-            <button type="submit">Submit</button>
+            <button type="submit" >Submit</button>
         </form>
         <!-- PUT function updating already pre existing values -->
         <h2> Update </h2>
         <section>
             <div>
-                <form id="update">
-                    <input type="text" placeholder="new name" id ="new name"/>
-                    <input type="float" placeholder="new latitude" id = "new latitude"/>
-                    <input type="float" placeholder="new longitude" id = "new longitude"/>
-                     <select name = 'myselect'>
+                <form id="update" style="text-align: center;">
+                    <input type="text" style="height:40px; width:60px;"placeholder="new name" id ="new name"/>
+                    <input type="float" style="height:40px; width:60px;" placeholder="new latitude" id = "new latitude"/>
+                    <input type="float" style="height:40px; width:60px;" placeholder="new longitude" id = "new longitude"/>
+                     <select name = 'myselect' style="height:50px; width:90px;" >
                         <option value="Hand Lines">Hand Lines</option>
                         <option value="Dozer Lines">Dozer Lines</option>
                         <option value="Fire Truck">Fire Truck</option>
                         
                       </select>
-                    <button>Submit</button>
+                    <button >Submit</button>
                 </form>
             </div>
         </section>
-<!--        uploading current position-->
-        <h2> Geolocation</h2>
-        <section> 
-            <div>
-                <form  id = "loca">
-                    <input type = "text" placeholder = "geo name" id = "geo name" />
-                    <button>Submit</button>
-                </form>
-            </div>
-        </section>
-        <h2> DrawLine </h2>
-        <section>
-            <div>
-                <!-- POST functions for inputting line points into the database -->
-                <form action = "/linepoints" method = "POST" id = "enter points">
-                    <input type="float" placeholder="x-start point" id ="x1" name = "firstX"/>
-                    <input type="float" placeholder="y-start point" id ="y1" name = "firstY"/>
-                    <input type="float" placeholder="x-end point" id ="x2" name = "secondX"/>
-                    <input type="float" placeholder="y-end point" id ="y2" name = "secondY"/>
-                    <button id = "delete button">Submit</button>
-                </form>
-            </div>
-            <div id="message"></div>
 
-        </section>
+        
         <script></script>
          <h2> Delete </h2>
         <section>
             <div>
                 <!-- deleting a value -->
-                <form id="delete">
-                    <input type="text" placeholder="delete name" id ="delete name"/>
-                    <button id = "delete button">Delete</button>
+                <form id="delete" style="text-align: center;">
+                    <input type="text" style="height:40px; width:60px;" placeholder="delete name" id ="delete name"/>
+                    <button id = "delete button"  >Delete</button>
                 </form>
             </div>
             <div id="message"></div>
         </section>
-        <script src = "main.js"></script>
-        
+
+            <h2> Geolocation</h2>
+        <section> 
+            <div>
+                <form  id = "loca" style="text-align: center;">
+                    <input type = "text" style="height:40px; width:60px;" placeholder = "geo name" id = "geo name" />
+                    <button id = "geoloc">Submit</button>
+                </form>
+            </div>
+        </section>
+            <br>
+            
+            <button id = "reload">Refresh</button>
+        </div>
+                </div>
+        <div class = "modal" id="pointinfo"> 
+        <div id="wrap2">
         <h2> Points </h2>
  <!-- Posting all the points in the database(not line points) -->
         <ul class="points">
@@ -279,17 +372,42 @@ input[type=float]:focus {
                     <span><%= points[i].name %></span>: 
                     <span><%= points[i].latitude %></span>
                     <span><%= points[i].longitude %></span>
-                     <span><%= points[i].myselect %></span>
+                    <span><%= points[i].myselect %></span>
                 </li>
             <% }} %>
         </ul>
 
+            </div>
+            </div>
     
-    <div id="map"></div>
-   
-         
+   <!--        uploading current position-->
+        <div class = "modal" id="lines" > 
+        <div id="wrap3">
+            <h2> DrawLine </h2>
+        <section>
+            <div>
+                <!-- POST functions for inputting line points into the database -->
+                <form action = "/linepoints" method = "POST" id = "enter points" style="text-align: center;">
+                    <input type="float" style="height:height:40px; width:60px;" placeholder="x-start point" id ="x1" name = "firstX"/>
+                    <input type="float" style="height:height:40px; width:60px;" placeholder="y-start point" id ="y1" name = "firstY"/>
+                    <input type="float" style="height:height:40px; width:60px;" placeholder="x-end point" id ="x2" name = "secondX"/>
+                    <input type="float" style="height:height:40px; width:60px;" placeholder="y-end point" id ="y2" name = "secondY"/>
+                    <select style="height:50px; width:90px;" name = 'myselect'>
+                        <option value="Hand Lines">Hand Lines</option>
+                        <option value="Dozer Lines">Dozer Lines</option>
+                        <option value="Fire Truck">Fire Truck</option>
+                      </select>
+                    <button >Submit</button>
+                </form>
+            </div>
+            <div id="message"></div>
+
+        </section>
+            </div></div>
+<!--
         
         <div id="distance" class="distance-container"></div>
+-->
          
         <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
 
@@ -303,10 +421,10 @@ input[type=float]:focus {
             var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/atann/cknmjlzsk3osb17odr8d8ga4z', // style URL
-            center: [-74.5, 40], // starting position [lng, lat]
+            center: [-122.2913, 37.8272], // starting position [lng, lat]
             zoom: 9 // starting zoom
             });
-           
+   
             var distanceContainer = document.getElementById('distance');
             
              var geojson = {
@@ -316,7 +434,7 @@ input[type=float]:focus {
         ]
       };
     //helper function to create json for the feature push
-    function createFeature(name,lat,lng){
+    function createFeature(name,lat,lng, type){
         var y = {
             'type': 'Feature',
           'geometry' : {
@@ -325,7 +443,9 @@ input[type=float]:focus {
            },
            'properties':{
             'title':'Location',
-            'description':name
+            'description':name,
+            'type': type
+               
             }
            };
          return y;
@@ -333,7 +453,7 @@ input[type=float]:focus {
             //pushing on points onto the map with every location on the database
 //        geojson.features.push(createFeature("CHINA TOWN",4,4));
         <%for(var i = 0; i < points.length; i++){ %>
-            geojson.features.push(createFeature("<%=points[i].name%>",<%=points[i].latitude%>,<%= points[i].longitude%>));
+            geojson.features.push(createFeature("<%=points[i].name%>",<%=points[i].latitude%>,<%= points[i].longitude%>,"<%=points[i].myselect%>"));
             
         <%}%>
         
@@ -345,6 +465,7 @@ input[type=float]:focus {
         // make a marker for each feature and add it to the map
         new mapboxgl.Marker(el)
           .setLngLat(marker.geometry.coordinates)
+            
           .setPopup(
             new mapboxgl.Popup({ offset: 25 }) // add popups
               .setHTML(
@@ -352,7 +473,12 @@ input[type=float]:focus {
                   marker.properties.title +
                   '</h3><p>' +
                   marker.properties.description +
-                  '</p>'
+                  '</p>' +
+                  '<p>' +
+                  marker.properties.type +
+                  '</p>' 
+                 
+                  
               )
           )
           .addTo(map);
@@ -439,13 +565,7 @@ input[type=float]:focus {
             });
             map.addControl(geocoder, 'top-left');
             // Used to draw a line between points
-            var linestring = {
-            'type': 'Feature',
-            'geometry': {
-            'type': 'LineString',
-            'coordinates': []
-            }
-            };
+            
              
             map.on('load', function () {
             map.addSource('geojson', {
@@ -595,82 +715,112 @@ input[type=float]:focus {
                   
                 });
             var popup = new mapboxgl.Popup();
-//            map.on('mousemove', function(e) {
-//              var features = map.queryRenderedFeatures(e.point, { layers: ['startingPoint', 'endingPoint'] });
-//              if (!features.length) {
-//                popup.remove();
-//                return;
-//              }
-//              var feature = features[0];
-//              popup.setLngLat(feature.geometry.coordinates)
-//                .setHTML(feature.properties.name)
-//                .addTo(map);
-//              map.getCanvas().style.cursor = features.length ? 'pointer' : '';
-//            });
-//            
-//            map.on('click', function(e) {
-//              // Return any features from the 'libraries' layer whenever the map is clicked
-//              var startingFeatures = map.queryRenderedFeatures(e.point, { layers: ['startingPoint'] });
-//              if (!libraryFeatures.length) {
-//                return;
-//              }
-//              var startingFeature = startingFeatures[0];
-//              // Using Turf, find the nearest hospital to library clicked
-//              var endingFeatures = turf.nearest(startingFeature, endingPoint);
-//              // If a nearest library is found
-//              if (endingFeatures !== null) {
-//                // Update the 'nearest-library' data source to include
-//                // the nearest library
-//                map.getSource('ending-Feature').setData({
-//                  type: 'FeatureCollection',
-//                  features: [
-//                    endingFeature
-//                  ]
-//                });
-//                // Create a new circle layer from the 'nearest-library' data source
-//                map.addLayer({
-//                  id: 'ending-Feature',
-//                  type: 'circle',
-//                  source: 'ending-Feature',
-//                  paint: {
-//                    'circle-radius': 12,
-//                    'circle-color': '#486DE0'
-//                  }
-//                }, 'endingPoint');
-//              }
-//            });
+            map.on('mousemove', function(e) {
+              var features = map.queryRenderedFeatures(e.point, { layers: ['startingPoint', 'endingPoint'] });
+              if (!features.length) {
+                popup.remove();
+                return;
+              }
+              var feature = features[0];
+              popup.setLngLat(feature.geometry.coordinates)
+                .setHTML(feature.properties.name)
+                .addTo(map);
+              map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+            });
             
-            
-            
-    function createLineFeature(x1,x2,y1,y2){
-        var y = {
-                'type': 'Feature',
-                'geometry': {
+            map.on('click', function(e) {
+              // Return any features from the 'libraries' layer whenever the map is clicked
+              var startingFeatures = map.queryRenderedFeatures(e.point, { layers: ['startingPoint'] });
+              if (!libraryFeatures.length) {
+                return;
+              }
+              var startingFeature = startingFeatures[0];
+              // Using Turf, find the nearest hospital to library clicked
+              var endingFeatures = turf.nearest(startingFeature, endingPoint);
+              // If a nearest library is found
+              if (endingFeatures !== null) {
+                // Update the 'nearest-library' data source to include
+                // the nearest library
+                map.getSource('ending-Feature').setData({
+                  type: 'FeatureCollection',
+                  features: [
+                    endingFeature
+                  ]
+                });
+                // Create a new circle layer from the 'nearest-library' data source
+                map.addLayer({
+                  id: 'ending-Feature',
+                  type: 'circle',
+                  source: 'ending-Feature',
+                  paint: {
+                    'circle-radius': 12,
+                    'circle-color': '#486DE0'
+                  }
+                }, 'endingPoint');
+              }
+            });
+        
+            function inputline(xo, yo, xt, yt, type){
+                if("Hand Lines" === type){
+                    var linestring = {
+                        'type': 'Feature',
+                        'properties': {'color' : 'red'},
+                    'geometry': {
                     'type': 'LineString',
-                    'properties': {},
                     'coordinates': [
-                        [x1, y1],
-                        [x2, y2]
+                        [xo,yo],
+                        [xt,yt]
                     ]
+                    },
+
+                    };
+                    return linestring;
                 }
-           };
-         return y;
-      }
-    var linejson = {'type': 'FeatureCollection',
-                'features': []
-                   };
-    <%for(var i = 0; i < linepoints.length; i++){ %>
-        linejson.features.push(createLineFeature(<%=linepoints[i].firstX%>,<%=linepoints[i].secondX%>,<%= linepoints[i].firstY%>,<%= linepoints[i].secondY%>));   
-    <%}%>
-    //ADDING lines to the map
-map.on('load', function () {
-        map.addSource('route', {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': linejson
+                if("Dozer Lines" === type){
+                    var linestring = {
+                        'type': 'Feature',
+                        'properties': {'color' : 'green'},
+                    'geometry': {
+                    'type': 'LineString',
+                    'coordinates': [
+                        [xo,yo],
+                        [xt,yt]
+                    ]
+                    },
+
+                    };
+                    return linestring;
+                }
+                if("Fire Truck" === type){
+                    var linestring = {
+                        'type': 'Feature',
+                        'properties': {'color' : 'blue'},
+                    'geometry': {
+                    'type': 'LineString',
+                    'coordinates': [
+                        [xo,yo],
+                        [xt,yt]
+                    ]
+                    },
+
+                    };
+                    return linestring;
+                }
+                
             }
-        });
+            var linejson = {
+                'type' : 'geojson',
+                'data' : {
+                    'type': 'FeatureCollection',
+                    'features' :[]
+                }
+            }
+            <%for(var i = 0; i < linepoints.length; i++){ %>
+            linejson.data.features.push(inputline(<%=linepoints[i].firstX%>,<%=linepoints[i].firstY%>,<%= linepoints[i].secondX%>,<%= linepoints[i].secondY%>,"<%=linepoints[i].myselect%>"));
+            
+        <%}%>
+            map.on('load', function () {
+        map.addSource('route', linejson);
         map.addLayer({
             'id': 'route',
             'type': 'line',
@@ -680,46 +830,21 @@ map.on('load', function () {
                 'line-cap': 'round'
             },
             'paint': {
-                'line-color': '#888',
-                'line-width': 15
+                 'line-width': 8,
+                 'line-color': ['get', 'color']
             }
         });
     });
-//        var geojson1 = {
-//        'type': 'FeatureCollection',
-//        'features': [
-//            {
-//                'type': 'Feature',
-//                'geometry': {
-//                    'type': 'LineString',
-//                    'properties': {},
-//                    'coordinates': [
-//                        [50, 15],
-//                        [12, 60]
-//                    ]
-//                }
-//            },
-//            {
-//                'type': 'Feature',
-//                'geometry': {
-//                    'type': 'LineString',
-//                    'properties': {},
-//                    'coordinates': [
-//                        [50, 15],
-//                        [12, 60]
-//                    ]
-//                }
-//            }
-//            
-//        ]
-//    };
+            
+            
+ 
     
  
 
             
         </script>
         
-
-
+        </div>
+        <script src = "main.js"></script>
     </body>
 </html>
