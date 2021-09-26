@@ -1,21 +1,39 @@
 {
-  "name": "pyrotamer-prototype",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.4"
+    "@react-native-mapbox-gl/maps": "^8.2.1",
+    "@react-native-picker/picker": "^2.1.0",
+    "@react-navigation/bottom-tabs": "^5.11.11",
+    "@react-navigation/native": "^5.9.4",
+    "expo": "~41.0.1",
+    "expo-status-bar": "~1.0.4",
+    "popup-ui": "^1.2.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-map-gl": "^6.1.16",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-double-tap": "^1.0.1",
+    "react-native-google-places-autocomplete": "^2.2.0",
+    "react-native-input-prompt": "^1.0.0",
+    "react-native-maps": "0.27.1",
+    "react-native-modal": "^12.0.2",
+    "react-native-numeric-input": "^1.9.0",
+    "react-native-options-menu": "^2.0.2",
+    "react-native-paper": "^4.9.2",
+    "react-native-popup-dialog": "^0.18.3",
+    "react-native-switch": "^2.0.0",
+    "react-native-web": "~0.13.12",
+    "toggle-switch-react-native": "^3.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "@babel/core": "^7.9.0"
+  },
+  "private": true
 }
